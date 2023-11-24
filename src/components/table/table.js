@@ -4,8 +4,8 @@ import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../table/table.css';
 import Button from 'react-bootstrap/Button';
-import UpdateModal from '../Modal/ModalAtt'; // Importe o componente do modal de atualização
-import DeleteModal from '../Modal/ModalExcluir'; // Importe o componente do modal de exclusão
+import UpdateModal from '../Modal/ModalAtt';
+import DeleteModal from '../Modal/ModalExcluir';
 
 function BasicExample() {
   const [data, setData] = useState([]);
@@ -14,18 +14,25 @@ function BasicExample() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const handleShowUpdateModal = (item) => {
-    console.log(item); // Verifique se 'item' está definido corretamente
     setSelectedItem(item);
     setShowUpdateModal(true);
   };
 
   const handleCloseUpdateModal = () => setShowUpdateModal(false);
 
-  const handleShowDeleteModal = () => setShowDeleteModal(true);
+  const handleShowDeleteModal = (item) => {
+    setSelectedItem(item);
+    setShowDeleteModal(true);
+  };
+
   const handleCloseDeleteModal = () => setShowDeleteModal(false);
 
+  const handleDeleteData = (deletedItem) => {
+    // Atualiza o estado local removendo o item excluído
+    setData((prevData) => prevData.filter((item) => item.id !== deletedItem.id));
+  };
+
   useEffect(() => {
-    // Função para realizar a chamada GET ao servidor json-server
     const fetchData = async () => {
       try {
         const response = await fetch('http://localhost:5000/pesquisador');
@@ -65,7 +72,7 @@ function BasicExample() {
                 <Button variant="info" onClick={() => handleShowUpdateModal(item)}>
                   Atualizar
                 </Button>{' '}
-                <Button variant="danger" onClick={handleShowDeleteModal}>
+                <Button variant="danger" onClick={() => handleShowDeleteModal(item)}>
                   Excluir
                 </Button>{' '}
               </td>
@@ -79,7 +86,12 @@ function BasicExample() {
         handleClose={handleCloseUpdateModal}
         selectedItem={selectedItem}
       />
-      <DeleteModal show={showDeleteModal} handleClose={handleCloseDeleteModal} />
+      <DeleteModal
+        show={showDeleteModal}
+        handleClose={handleCloseDeleteModal}
+        selectedItem={selectedItem}
+        handleDeleteData={handleDeleteData}
+      />
     </>
   );
 }

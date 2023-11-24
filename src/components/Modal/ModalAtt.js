@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-function ModalAtt({ show, handleClose, selectedItem }) {
+function ModalAtt({ show, handleClose, selectedItem, handleUpdateData }) {
   const [formValues, setFormValues] = useState({
     pesquisador: '',
     nomeProjeto: '',
@@ -30,7 +30,7 @@ function ModalAtt({ show, handleClose, selectedItem }) {
   const handleSave = async () => {
     try {
       // Envia uma requisição PUT para atualizar o projeto
-      const response = await fetch(`http://localhost:5000/nameProjeto/${selectedItem.id}`, {
+      const response = await fetch(`http://localhost:5000/pesquisador/${selectedItem.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -41,6 +41,9 @@ function ModalAtt({ show, handleClose, selectedItem }) {
       if (!response.ok) {
         throw new Error('Falha ao atualizar o projeto');
       }
+
+      // Atualiza o estado local com os dados atualizados
+      handleUpdateData({ ...selectedItem, ...formValues });
 
       // Limpa o formulário
       setFormValues({
