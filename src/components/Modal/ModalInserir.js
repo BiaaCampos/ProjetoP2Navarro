@@ -40,6 +40,9 @@ function ModalExample({ show, handleClose }) {
 
       // Fecha o modal
       handleClose();
+
+      // Exibe um alerta de sucesso
+      alert('Projeto adicionado com sucesso!');
     } catch (error) {
       console.error('Erro ao adicionar novo projeto:', error);
     }

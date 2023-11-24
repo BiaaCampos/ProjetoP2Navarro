@@ -1,6 +1,10 @@
 {
-  "project": [],
   "pesquisador": [
-
+    {
+      "pesquisador": "Bia",
+      "nomeProjeto": "teste",
+      "descricao": "TESTE2",
+      "id": 3
+    }
   ]
 }
