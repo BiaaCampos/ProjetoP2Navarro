@@ -1,16 +1,10 @@
 {
   "pesquisador": [
     {
-      "pesquisador": "Giovanna",
-      "nomeProjeto": "teste1 ",
-      "descricao": "teste des",
+      "pesquisador": "Astrobal",
+      "nomeProjeto": "Frameworks para API",
+      "descricao": "Consumindo uma API com ReactJs",
       "id": 1
-    },
-    {
-      "pesquisador": "teste",
-      "nomeProjeto": "teste",
-      "descricao": "teste",
-      "id": 2
     }
   ]
 }
