@@ -4,15 +4,16 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-function ModalAtt({ show, handleClose, selectedItem, handleUpdateData }) {
+function ModalAtt({ show, handleClose, selectedItem }) {
+  // Define o estado inicial do formulário
   const [formValues, setFormValues] = useState({
     pesquisador: '',
     nomeProjeto: '',
     descricao: '',
   });
 
+  // Efeito useEffect para atualizar o estado do formulário quando o item selecionado muda
   useEffect(() => {
-    // Atualiza o estado do formulário com os dados do item selecionado
     if (selectedItem) {
       setFormValues({
         pesquisador: selectedItem.pesquisador,
@@ -22,6 +23,7 @@ function ModalAtt({ show, handleClose, selectedItem, handleUpdateData }) {
     }
   }, [selectedItem]);
 
+  // Função para lidar com a mudança nos campos do formulário
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues((prevValues) => ({ ...prevValues, [name]: value }));
@@ -42,9 +44,6 @@ function ModalAtt({ show, handleClose, selectedItem, handleUpdateData }) {
         throw new Error('Falha ao atualizar o projeto');
       }
 
-      // Atualiza o estado local com os dados atualizados
-      handleUpdateData({ ...selectedItem, ...formValues });
-
       // Limpa o formulário
       setFormValues({
         pesquisador: '',
@@ -58,6 +57,7 @@ function ModalAtt({ show, handleClose, selectedItem, handleUpdateData }) {
       console.error('Erro ao atualizar o projeto:', error);
     }
   };
+
 
   return (
     <Modal show={show} onHide={handleClose}>

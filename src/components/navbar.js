@@ -1,8 +1,6 @@
 // No componente 'MyNavbar'
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import ModalExample from '../components/Modal/ModalInserir';
@@ -18,11 +16,11 @@ function MyNavbar() {
     <>
       <Navbar expand="lg" className="bg-body-tertiary mb-3">
         <Container fluid>
-          <Navbar.Brand href="#">NewProjects</Navbar.Brand>
+          <Navbar.Brand href="/">NewProjects</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link onClick={handleShowModal}>Cadastrar</Nav.Link>
             </Nav>
           </Navbar.Collapse>

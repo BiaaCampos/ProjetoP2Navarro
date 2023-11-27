@@ -4,22 +4,26 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 function DeleteModal({ show, handleClose, selectedItem, handleDeleteData }) {
+  // Função para lidar com a exclusão do projeto
   const handleDelete = async () => {
     try {
+      // Envia uma requisição DELETE para excluir o projeto
       const response = await fetch(`http://localhost:5000/pesquisador/${selectedItem.id}`, {
         method: 'DELETE',
       });
 
+      // Verifica se a requisição foi bem-sucedida
       if (!response.ok) {
         throw new Error('Falha ao excluir o projeto');
       }
 
-      // Chama a função de exclusão passada como prop
+      // Chama a função de exclusão passada como propriedade
       handleDeleteData(selectedItem);
 
       // Fecha o modal
       handleClose();
     } catch (error) {
+      // Trata erros, exibindo uma mensagem no console
       console.error('Erro ao excluir o projeto:', error);
     }
   };
